@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicología de Ventas - Resguarda Consultores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0F2E5C;
+            --orange: #EF7510;
+            --cream: #FFF7EC;
+            --light-blue: #D9E8F5;
+            --dark-orange: #C66410;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, #1A56A6 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            color: var(--navy);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--navy), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            padding: 12px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            background: var(--navy);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: white;
+            box-shadow: 0 8px 20px rgba(239, 117, 16, 0.4);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--orange);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            background: var(--dark-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(239, 117, 16, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: #082147;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            background: var(--navy);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid var(--navy);
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 10px rgba(239, 117, 16, 0.3);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        footer p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        footer strong {
+            color: var(--navy);
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            nav { flex-direction: column; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--navy), #1A56A6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .highlight-box h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--navy);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Psicología de Ventas</h1>
+            <p>El Efecto Compuesto + Zonas Erróneas para Transformar tu Cartera</p>
+            <div>
+                <span class="badge">📚 Hardy</span>
+                <span class="badge">🧠 Dyer</span>
+                <span class="badge">💰 Ventas</span>
+            </div>
+        </header>
+
+        <nav id="navBar">
+            <button class="nav-btn active" onclick="cambiarSeccion('inicio', event)">🏠 Inicio</button>
+            <button class="nav-btn" onclick="cambiarSeccion('video', event)">🎬 Video</button>
+            <button class="nav-btn" onclick="cambiarSeccion('compuesto', event)">📈 Hardy</button>
+            <button class="nav-btn" onclick="cambiarSeccion('dyer', event)">🧠 Dyer</button>
+            <button class="nav-btn" onclick="cambiarSeccion('scripts', event)">✏️ Scripts</button>
+            <button class="nav-btn" onclick="cambiarSeccion('calculadora', event)">📊 Calculadora</button>
+            <button class="nav-btn" onclick="cambiarSeccion('examen', event)">✍️ Examen</button>
+            <button class="nav-btn" onclick="cambiarSeccion('flashcards', event)">🎴 Flashcards</button>
+        </nav>
+
+        <!-- INICIO -->
+        <section id="inicio" class="section active">
+            <div class="highlight-box">
+                <h2>🎯 ¿Donde Fallamos y Qué Hacemos Mal?</h2>
+                <p style="font-size: 1.1em; margin-top: 15px;">El diagnóstico brutal de tus agentes</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="stat-box">
+                    <div class="stat-number">37X</div>
+                    <div class="stat-label">Mejora en 1 año con 1% diario</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">109</div>
+                    <div class="stat-label">Agentes en Resguarda</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">90</div>
+                    <div class="stat-label">Días para transformación</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">30%+</div>
+                    <div class="stat-label">Prima esperada en 3 meses</div>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="color: #d32f2f;">❌ EFECTO COMPUESTO: Donde Fallamos</h3>
+                    <p><strong>1. Prospección inconsistente</strong> - Hacemos 5 llamadas un día, 0 al siguiente</p>
+                    <p><strong>2. Abandonamos en mes 2</strong> - La curva es plana, no ven resultados</p>
+                    <p><strong>3. No medimos progreso</strong> - Sin números = sin motivación</p>
+                    <p><strong>4. Creemos en "suerte"</strong> - Es consistencia, no suerte</p>
+                    <p><strong>5. No leemos</strong> - 0 libros vs 30 libros/año</p>
+                </div>
+
+                <div class="card">
+                    <h3 style="color: #d32f2f;">❌ ZONAS ERRÓNEAS: Donde Fallamos</h3>
+                    <p><strong>1. Buscamos aprobación</strong> - Decimos "¿Te parece?" en lugar de recomendar</p>
+                    <p><strong>2. Miedo al rechazo</strong> - Un "No" nos desmoralizamos</p>
+                    <p><strong>3. Postergación</strong> - No agendamos HOY, cliente olvida mañana</p>
+                    <p><strong>4. Perfeccionismo</strong> - Esperamos pitch perfecto, nunca llamamos</p>
+                    <p><strong>5. Identidad débil</strong> - Creemos "Soy tímido", eso define nuestro comportamiento</p>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, #d32f2f, #c0392b);">
+                <h2>⚡ EL COSTO REAL</h2>
+                <p style="font-size: 1.2em; margin-top: 15px;">
+                    <strong>Agente Zona Errónea:</strong> 0.5 prospectos/día = $12,500/mes en prima<br>
+                    <strong>Agente Zona de Poder:</strong> 3 prospectos/día = $50,000/mes en prima<br><br>
+                    <span style="font-size: 1.5em; color: var(--orange);">DIFERENCIA: $37,500/mes = $450,000/AÑO</span>
+                </p>
+            </div>
+        </section>
+
+        <!-- VIDEO RESUMEN -->
+        <section id="video" class="section">
+            <div class="highlight-box">
+                <h2>🎬 Video Resumen - 5 Minutos</h2>
+                <p>La Fórmula Ganadora: Hardy + Dyer</p>
+            </div>
+
+            <!-- REPRODUCTOR DE VIDEO -->
+            <div class="card" style="padding: 0; overflow: hidden;">
+                <div style="background: #000; position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px 12px 0 0;">
+                    <video id="videoResumen" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        controls 
+                        controlsList="nodownload"
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'%3E%3Crect fill='%230F2E5C' width='1280' height='720'/%3E%3Ctext x='640' y='360' font-size='60' fill='white' text-anchor='middle' dominant-baseline='middle' font-family='Arial'%3E▶️ Psicología de Ventas%3C/text%3E%3C/svg%3E">
+                        <source src="Psicologia_Ventas_Resguarda.mp4" type="video/mp4">
+                        Tu navegador no soporta video HTML5.
+                    </video>
+                </div>
+
+                <div style="padding: 25px;">
+                    <h3 style="color: var(--navy); margin-bottom: 20px;">📹 Contenido del Video</h3>
+                    
+                    <div style="margin-bottom: 15px; padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--navy);">
+                        <p style="color: var(--navy); font-weight: bold; margin-bottom: 5px;">⏱️ Min 0-1:00 | EL COSTO BRUTAL</p>
+                        <p style="color: #555; font-size: 0.95em;">Agente sin consistencia pierde $450,000/año. El precio real de NO hacer efecto compuesto.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px; padding: 15px; background: #fff9f0; border-radius: 8px; border-left: 4px solid var(--orange);">
+                        <p style="color: var(--orange); font-weight: bold; margin-bottom: 5px;">⏱️ Min 1-2:00 | LA FÓRMULA MÁGICA</p>
+                        <p style="color: #555; font-size: 0.95em;">1% mejor cada día = 37.78x en un año. 3 prospectos diarios = 180 contactos en 90 días.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px; padding: 15px; background: #ffe8e8; border-radius: 8px; border-left: 4px solid #d32f2f;">
+                        <p style="color: #d32f2f; font-weight: bold; margin-bottom: 5px;">⏱️ Min 2-3:00 | LAS ZONAS ERRÓNEAS</p>
+                        <p style="color: #555; font-size: 0.95em;">5 creencias limitantes: Aprobación, Miedo, Postergación, Perfeccionismo, Comparación. Cada una cuesta -40% a -50%.</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px; padding: 15px; background: #e8f5e9; border-radius: 8px; border-left: 4px solid #27ae60;">
+                        <p style="color: #27ae60; font-weight: bold; margin-bottom: 5px;">⏱️ Min 3-4:00 | ZONA DE PODER</p>
+                        <p style="color: #555; font-size: 0.95em;">Zona Errónea: 0.5 cierres/mes | Zona de Poder: 12 cierres/mes = 8X MÁS RESULTADOS.</p>
+                    </div>
+
+                    <div style="padding: 15px; background: #f0f4ff; border-radius: 8px; border-left: 4px solid var(--navy);">
+                        <p style="color: var(--navy); font-weight: bold; margin-bottom: 5px;">⏱️ Min 4-5:00 | PLAN 90 DÍAS</p>
+                        <p style="color: #555; font-size: 0.95em;">Semana 1-2: Estudia | Semana 3: Practica | Semana 4: Examen + implementa = +30% prima.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCARGA DE VIDEO -->
+            <div class="card" style="background: linear-gradient(135deg, #fff9f0, #fffde7); border-left-color: var(--orange); margin-top: 20px;">
+                <h3 style="color: var(--orange); margin-bottom: 15px;">📥 ¿VIDEO NO CARGA?</h3>
+                <p style="color: #555; margin-bottom: 15px;">Si el video no se reproduce, puedes:</p>
+                <ol style="color: #555; margin-left: 20px;">
+                    <li style="margin-bottom: 10px;">Actualizar la página (F5 o Ctrl+R)</li>
+                    <li style="margin-bottom: 10px;">Probar en otro navegador (Chrome, Firefox, Safari)</li>
+                    <li style="margin-bottom: 10px;">Verificar conexión a internet</li>
+                    <li>Descargar video: <button class="btn" onclick="descargarVideo()" style="display: inline-block; padding: 8px 16px; font-size: 0.9em; margin: 5px 0;">📥 Descargar Video (MP4)</button></li>
+                </ol>
+            </div>
+
+            <!-- RESUMEN VISUAL -->
+            <div class="card" style="background: linear-gradient(135deg, var(--navy), #1A56A6); color: white; margin-top: 20px;">
+                <h3 style="color: var(--orange); margin-bottom: 20px;">✨ LA FÓRMULA GANADORA</h3>
+                <div style="text-align: center; font-size: 1.2em; line-height: 2;">
+                    <p style="color: white;">📚 ACCIÓN CONSISTENTE (Hardy)</p>
+                    <p style="color: var(--orange); font-size: 1.4em;">✕</p>
+                    <p style="color: white;">🧠 MENTALIDAD DE PODER (Dyer)</p>
+                    <p style="color: var(--orange); font-size: 1.4em;">=</p>
+                    <p style="color: var(--orange); font-size: 1.5em; font-weight: bold;">+30% PRIMA EN 90 DÍAS 🚀</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EFECTO COMPUESTO -->
+        <section id="compuesto" class="section">
+            <div class="highlight-box">
+                <h2>📈 EL EFECTO COMPUESTO - Darren Hardy</h2>
+                <p>1% mejor cada día = 37.78x mejor en un año</p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Los 6 Pilares del Éxito</h3>
+                <p><strong>1. Producción:</strong> Resultados concretos (prima pagada)</p>
+                <p><strong>2. Influencia:</strong> Impacto en tus clientes</p>
+                <p><strong>3. Libertad:</strong> Control sobre tu tiempo</p>
+                <p><strong>4. Responsabilidad:</strong> Dueño del 100% del resultado</p>
+                <p><strong>5. Disciplina:</strong> Hábitos diarios consistentes</p>
+                <p><strong>6. Oportunidad:</strong> Preparación para capitar momentos</p>
+            </div>
+
+            <div class="card">
+                <h3>📞 La Regla de 3 Prospectos Diarios</h3>
+                <p>3 prospectos CADA DÍA sin excepción = 180 contactos/trimestre</p>
+                <p>180 contactos × 20% conversión = 36 nuevas pólizas</p>
+                <p style="color: var(--navy); font-weight: bold; margin-top: 15px;">EFECTO COMPUESTO EN ACCIÓN</p>
+            </div>
+
+            <div class="card">
+                <h3>📖 Lectura Diaria (15-30 minutos)</h3>
+                <p>15 minutos diarios = 30 libros/año</p>
+                <p>30 libros/año = 10x más expertise en 1 año</p>
+                <p>Resultado: Confianza en presentaciones +40%</p>
+            </div>
+        </section>
+
+        <!-- ZONAS ERRÓNEAS -->
+        <section id="dyer" class="section">
+            <div class="highlight-box">
+                <h2>🧠 TUS ZONAS ERRÓNEAS - Wayne Dyer</h2>
+                <p>Identifica y elimina creencias limitantes</p>
+            </div>
+
+            <div class="card">
+                <h3 style="color: #d32f2f;">👥 Zona Errónea #1: Aprobación Externa</h3>
+                <p><strong>Problema:</strong> Dices "¿Te parece?" en lugar de recomendar</p>
+                <p><strong>Impacto:</strong> -30% en cierres (cliente no siente confianza)</p>
+                <p><strong>Solución Dyer:</strong> Actúa desde tu identidad de experto</p>
+            </div>
+
+            <div class="card">
+                <h3 style="color: #1976d2;">😨 Zona Errónea #2: Miedo al Rechazo</h3>
+                <p><strong>Problema:</strong> Un "No" te desmoraliza y abandonas</p>
+                <p><strong>Impacto:</strong> -40% en prospección</p>
+                <p><strong>Solución:</strong> "No" = información, no rechazo personal</p>
+            </div>
+
+            <div class="card">
+                <h3 style="color: #7b1fa2;">⏰ Zona Errónea #3: Postergación</h3>
+                <p><strong>Problema:</strong> No agendas citas HOY; cliente olvida mañana</p>
+                <p><strong>Impacto:</strong> -50% en resultados</p>
+                <p><strong>Solución:</strong> Agenda HOY. Confirma cita AHORA, no mañana</p>
+            </div>
+
+            <div class="card">
+                <h3 style="color: #27ae60;">💪 Zona de Poder (Opuesto)</h3>
+                <p><strong>¿Qué es?</strong> Actúas desde quién quieres SER, no desde miedo</p>
+                <p><strong>Resultado:</strong> +50% en cierres + +40% en referidos</p>
+                <p style="color: #27ae60; font-weight: bold; margin-top: 15px;">ACTÚA DESDE PODER, NO DESDE DUDA</p>
+            </div>
+        </section>
+
+        <!-- GENERADOR DE SCRIPTS -->
+        <section id="scripts" class="section">
+            <div class="highlight-box">
+                <h2>✏️ Generador de Scripts Personalizado</h2>
+                <p>Crea tu script de poder en 30 segundos</p>
+            </div>
+
+            <div class="card">
+                <h3>📝 Completa los campos:</h3>
+                <div>
+                    <label><strong>Tu Nombre:</strong></label>
+                    <input type="text" id="tu-nombre" placeholder="Ej: Juan González">
+                    
+                    <label><strong>Producto Principal:</strong></label>
+                    <select id="producto">
+                        <option value="">-- Selecciona --</option>
+                        <option value="vida">Seguro de Vida</option>
+                        <option value="gmm">Gastos Médicos Mayores</option>
+                        <option value="daños">Seguros de Daños</option>
+                    </select>
+                    
+                    <label><strong>Tipo de Cliente:</strong></label>
+                    <select id="cliente">
+                        <option value="">-- Selecciona --</option>
+                        <option value="joven">Cliente Joven (20-35)</option>
+                        <option value="familia">Padre/Madre de Familia</option>
+                        <option value="empresario">Empresario/Profesional</option>
+                    </select>
+                    
+                    <label><strong>Objeción Común:</strong></label>
+                    <select id="objecion">
+                        <option value="">-- Selecciona --</option>
+                        <option value="dinero">"No tengo dinero"</option>
+                        <option value="tiempo">"Déjame pensarlo"</option>
+                        <option value="interes">"No me interesa"</option>
+                    </select>
+                    
+                    <button class="btn" onclick="generarScript()" style="width: 100%;">🎯 Generar Mi Script</button>
+                </div>
+            </div>
+
+            <div id="script-resultado" style="display: none;" class="card">
+                <h3>🎤 Tu Script de Poder:</h3>
+                <pre id="script-texto" style="background: #f5f5f5; padding: 20px; border-radius: 8px; overflow-x: auto;"></pre>
+                <button class="btn" onclick="copiarScript()">📋 Copiar Script</button>
+            </div>
+        </section>
+
+        <!-- CALCULADORA -->
+        <section id="calculadora" class="section">
+            <div class="highlight-box">
+                <h2>📊 Calculadora del Efecto Compuesto</h2>
+                <p>Visualiza cuánto dinero extra harás</p>
+            </div>
+
+            <div class="card">
+                <h3>⚙️ Configura tus números:</h3>
+                <div class="grid-2">
+                    <div>
+                        <label><strong>Prospectos/Día HOY:</strong></label>
+                        <input type="number" id="prospectos-hoy" value="0.5" step="0.1" onchange="calcularCompuesto()">
+                    </div>
+                    <div>
+                        <label><strong>Prospectos/Día META:</strong></label>
+                        <input type="number" id="prospectos-meta" value="3" step="0.1" onchange="calcularCompuesto()">
+                    </div>
+                    <div>
+                        <label><strong>Conversión Actual (%):</strong></label>
+                        <input type="number" id="conversion-actual" value="5" step="1" max="100" onchange="calcularCompuesto()">
+                    </div>
+                    <div>
+                        <label><strong>Conversión META (%):</strong></label>
+                        <input type="number" id="conversion-meta" value="20" step="1" max="100" onchange="calcularCompuesto()">
+                    </div>
+                </div>
+            </div>
+
+            <div id="resultados-compuesto"></div>
+        </section>
+
+        <!-- EXAMEN -->
+        <section id="examen" class="section">
+            <div class="highlight-box">
+                <h2>✍️ EXAMEN FINAL: 30 PREGUNTAS</h2>
+                <p>15 de Hardy + 15 de Dyer | Mínimo 70% para pasar</p>
+            </div>
+
+            <div id="examen-container" class="card">
+                <div id="examen-preguntas"></div>
+                <button class="btn" onclick="calificarExamen()" style="width: 100%; margin-top: 30px;">📊 Ver Resultado</button>
+                <button class="btn btn-secondary" onclick="reiniciarExamen()" style="width: 100%;margin-top: 10px;">🔄 Reiniciar</button>
+            </div>
+
+            <div id="resultado-examen" style="display: none;" class="card">
+                <h3 id="resultado-titulo"></h3>
+                <div id="resultado-contenido"></div>
+            </div>
+        </section>
+
+        <!-- FLASHCARDS -->
+        <section id="flashcards" class="section">
+            <div class="highlight-box">
+                <h2>🎴 Flashcards Interactivas</h2>
+                <p>Haz clic para voltear y estudia los conceptos</p>
+            </div>
+
+            <div id="flashcards-container" style="max-width: 600px; margin: 0 auto;"></div>
+        </section>
+
+        <footer>
+            <p><strong>🏆 Psicología de Ventas - Resguarda Consultores</strong></p>
+            <p>Basado en "El Efecto Compuesto" (Darren Hardy) + "Tus Zonas Erróneas" (Wayne Dyer)</p>
+            <p>📞 WhatsApp Comercial: 668 170 5784 | 💡 Vivir es increíble ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        // ===== DESCARGAR VIDEO =====
+        function descargarVideo() {
+            const videoUrl = 'Psicologia_Ventas_Resguarda.mp4';
+            const link = document.createElement('a');
+            link.href = videoUrl;
+            link.download = 'Psicologia_Ventas_Resguarda.mp4';
+            link.click();
+            alert('✅ Descarga iniciada. El video se guardará en tu carpeta de Descargas.');
+        }
+
+        // ===== NAVEGACIÓN ENTRE PESTAÑAS =====
+        function cambiarSeccion(id, event) {
+            event.preventDefault();
+            
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+            
+            // Mostrar sección seleccionada
+            document.getElementById(id).classList.add('active');
+            
+            // Actualizar botones
+            const btns = document.querySelectorAll('.nav-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll arriba
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // ===== GENERADOR DE SCRIPTS =====
+        function generarScript() {
+            const nombre = document.getElementById('tu-nombre').value || 'Agente';
+            const producto = document.getElementById('producto').value;
+            const cliente = document.getElementById('cliente').value;
+            const objecion = document.getElementById('objecion').value;
+
+            if (!producto || !cliente || !objecion) {
+                alert('Por favor completa todos los campos');
+                return;
+            }
+
+            const scripts = {
+                vida_dinero: 'Entiendo. No es que no tengas dinero. Es que no ves el VALOR. Por $X al mes, proteges $X millones. ¿Ves la inversión?',
+                gmm_dinero: 'Perfecto. Pero piénsalo: ¿Cuál es el costo de una hospitalización sin cobertura? Esto es protección, no gasto.',
+                daños_dinero: 'Lo entiendo. Pero sin cobertura, un accidente destroza tu patrimonio. Te recomiendo este plan.',
+                vida_tiempo: 'Claro. Pero mientras piensas, el riesgo sigue. Agenda HOY. Te llamo el jueves 3pm. ¿Va?',
+                gmm_tiempo: 'Perfecto. Agendamos una cita mañana para explicarte todo. ¿10am o 3pm?',
+                daños_tiempo: 'Entendido. Nos vemos mañana 3pm. Confirmo tu cita HOY. ¿Va bien?'
+            };
+
+            const scriptKey = producto + '_' + objecion;
+            const script = scripts[scriptKey] || 'Te recomiendo este plan porque protege lo importante para ti.';
+
+            const salida = `🎤 APERTURA (Zona de Poder):
+"Hola, soy ${nombre}, experto en protección. Tu familia merece estar protegida."
+
+📋 PRESENTACIÓN:
+"Te recomiendo este seguro porque ${script}"
+
+✅ CIERRE:
+"Agendamos mañana ¿10am o 3pm?"
+
+💪 RECUERDA:
+- Eres EXPERTO (no vendedor tímido)
+- Estás en ZONA DE PODER
+- Agenda HOY (no mañana)`;
+
+            document.getElementById('script-texto').innerText = salida;
+            document.getElementById('script-resultado').style.display = 'block';
+        }
+
+        function copiarScript() {
+            const texto = document.getElementById('script-texto').innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('✅ Script copiado');
+            });
+        }
+
+        // ===== CALCULADORA EFECTO COMPUESTO =====
+        function calcularCompuesto() {
+            const prosp_hoy = parseFloat(document.getElementById('prospectos-hoy').value) || 0;
+            const prosp_meta = parseFloat(document.getElementById('prospectos-meta').value) || 3;
+            const conv_actual = parseFloat(document.getElementById('conversion-actual').value) || 5;
+            const conv_meta = parseFloat(document.getElementById('conversion-meta').value) || 20;
+            const prima = 5000;
+            const dias = 90;
+
+            const contactos_hoy = prosp_hoy * dias;
+            const contactos_meta = prosp_meta * dias;
+            const cierres_hoy = contactos_hoy * (conv_actual / 100);
+            const cierres_meta = contactos_meta * (conv_meta / 100);
+            const prima_hoy = cierres_hoy * prima;
+            const prima_meta = cierres_meta * prima;
+            const diferencia = prima_meta - prima_hoy;
+            const mult = prima_meta / (prima_hoy || 1);
+
+            const html = `
+                <div class="grid-2">
+                    <div class="card" style="background: #ffebee; border-left-color: #d32f2f;">
+                        <h3 style="color: #d32f2f;">❌ HOY (Zona Errónea)</h3>
+                        <p><strong>Contactos:</strong> ${Math.round(contactos_hoy)}</p>
+                        <p><strong>Cierres:</strong> ${Math.round(cierres_hoy)}</p>
+                        <p style="color: #d32f2f; font-weight: bold; font-size: 1.3em;">Prima: $${prima_hoy.toLocaleString('es-MX')}</p>
+                    </div>
+
+                    <div class="card" style="background: #e8f5e9; border-left-color: #27ae60;">
+                        <h3 style="color: #27ae60;">✅ META (Zona de Poder)</h3>
+                        <p><strong>Contactos:</strong> ${Math.round(contactos_meta)}</p>
+                        <p><strong>Cierres:</strong> ${Math.round(cierres_meta)}</p>
+                        <p style="color: #27ae60; font-weight: bold; font-size: 1.3em;">Prima: $${prima_meta.toLocaleString('es-MX')}</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="background: linear-gradient(135deg, var(--navy), #1A56A6);">
+                    <h3>🚀 DIFERENCIA (Efecto Compuesto)</h3>
+                    <p style="font-size: 1.2em; color: var(--orange);">+$${diferencia.toLocaleString('es-MX')}</p>
+                    <p style="font-size: 1.4em; font-weight: bold;">${mult.toFixed(1)}X MÁS DINERO</p>
+                </div>
+            `;
+
+            document.getElementById('resultados-compuesto').innerHTML = html;
+        }
+
+        // ===== GENERAR EXAMEN =====
+        function generarExamen() {
+            const preguntas = [
+                { pregunta: '¿Cuál es la fórmula del efecto compuesto?', opciones: ['1% diario = 37.78x en un año', '10% semanal', 'Cambio grande', 'Suerte'], respuesta: 0, libro: 'Hardy' },
+                { pregunta: '¿Cuántos prospectos diarios recomienda Hardy?', opciones: ['10', '1', '3 (no negociable)', 'Cuando aparezcan'], respuesta: 2, libro: 'Hardy' },
+                { pregunta: '¿Cuál es la zona errónea más destructiva?', opciones: ['Falta de producto', 'Buscar aprobación externa', 'Mala suerte', 'Competencia'], respuesta: 1, libro: 'Dyer' },
+                { pregunta: '¿Qué dice Dyer sobre la culpa?', opciones: ['Es útil', 'Es la más inútil', 'Es importante', 'Siempre debe existir'], respuesta: 1, libro: 'Dyer' },
+                { pregunta: '¿Qué es la zona de poder?', opciones: ['Tu oficina', 'Actúas desde quién quieres SER', 'Tu territorio', 'Donde ganas dinero'], respuesta: 1, libro: 'Dyer' },
+                { pregunta: '¿Cuántos pilares tiene el éxito según Hardy?', opciones: ['3', '4', '6', '10'], respuesta: 2, libro: 'Hardy' },
+                { pregunta: '15 min lectura diarios = cuántos libros/año', opciones: ['5', '10', '30', '100'], respuesta: 2, libro: 'Hardy' },
+                { pregunta: '¿Cuál es el costo de la postergación?', opciones: ['Bajo', '-50% en resultados', 'Ninguno', 'Variable'], respuesta: 1, libro: 'Dyer' },
+                { pregunta: 'El "No" de un cliente significa...', opciones: ['Rechazo personal', 'Información (necesita educación)', 'Abandona', 'Pierde dinero'], respuesta: 1, libro: 'Dyer' },
+                { pregunta: '¿Cuándo es visible el efecto compuesto?', opciones: ['Mes 1', 'Mes 2', 'Mes 3-6', 'Año 2'], respuesta: 2, libro: 'Hardy' }
+            ];
+
+            let html = '';
+            preguntas.forEach((q, idx) => {
+                html += `<div style="background: #f5f5f5; padding: 20px; margin-bottom: 15px; border-radius: 8px; border-left: 5px solid ${q.libro === 'Hardy' ? '#0F2E5C' : '#EF7510'};">
+                    <p style="color: #666; font-size: 0.9em;"><strong>${q.libro}</strong> | Pregunta ${idx + 1}/10</p>
+                    <p style="font-weight: bold; margin: 10px 0;">${q.pregunta}</p>
+                    <div style="margin-left: 20px;">`;
+                
+                q.opciones.forEach((op, i) => {
+                    html += `<label style="display: block; margin-bottom: 8px; cursor: pointer;">
+                        <input type="radio" name="q${idx}" value="${i}">
+                        <span style="margin-left: 8px;">${op}</span>
+                    </label>`;
+                });
+                
+                html += `</div></div>`;
+            });
+
+            document.getElementById('examen-preguntas').innerHTML = html;
+        }
+
+        function calificarExamen() {
+            const preguntas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            const respuestas = [0, 2, 1, 1, 1, 2, 2, 1, 1, 2];
+            
+            let correctas = 0;
+            preguntas.forEach((idx) => {
+                const resp = document.querySelector(`input[name="q${idx}"]:checked`);
+                if (resp && parseInt(resp.value) === respuestas[idx]) {
+                    correctas++;
+                }
+            });
+
+            const porcentaje = Math.round((correctas / 10) * 100);
+            const paso = porcentaje >= 70;
+
+            document.getElementById('resultado-examen').style.display = 'block';
+            document.getElementById('resultado-titulo').innerHTML = paso ? 
+                `✅ ¡APROBASTE! ${porcentaje}%` : 
+                `❌ NO APROBASTE: ${porcentaje}%`;
+            document.getElementById('resultado-titulo').style.color = paso ? '#27ae60' : '#d32f2f';
+            
+            document.getElementById('resultado-contenido').innerHTML = `
+                <p><strong>✅ Correctas:</strong> ${correctas}/10</p>
+                <p><strong>❌ Incorrectas:</strong> ${10-correctas}/10</p>
+                <p style="font-weight: bold; color: ${paso ? '#27ae60' : '#d32f2f'};">Resultado: ${porcentaje}% ${paso ? '(Mínimo 70% ✓)' : '(Mínimo 70% ✗)'}</p>
+                ${paso ? '<p style="color: #27ae60; font-weight: bold; margin-top: 15px;">¡Estás listo para transformar tu cartera!</p>' : '<p style="color: #d32f2f; font-weight: bold; margin-top: 15px;">Vuelve a intentar después de estudiar.</p>'}
+            `;
+        }
+
+        function reiniciarExamen() {
+            document.getElementById('resultado-examen').style.display = 'none';
+            generarExamen();
+        }
+
+        // ===== GENERAR FLASHCARDS =====
+        function generarFlashcards() {
+            const tarjetas = [
+                { frente: '¿Qué es el Efecto Compuesto?', reverso: '1% mejor cada día = 37.78x mejor en un año' },
+                { frente: '¿Cuántos prospectos diarios?', reverso: '3 prospectos/día (no negociable)' },
+                { frente: '¿Cuál es la zona errónea más destructiva?', reverso: 'Buscar aprobación externa' },
+                { frente: '¿Qué significa "No" para un vendedor?', reverso: 'Información: necesita más educación' },
+                { frente: '¿Qué es Zona de Poder?', reverso: 'Actúas desde quién quieres SER, no desde miedo' },
+                { frente: '15 min lectura = ?', reverso: '~30 libros/año' },
+                { frente: '¿Cuándo es visible el efecto?', reverso: 'Mes 3-6 (después de consistencia)' },
+                { frente: '¿Qué propone Dyer sobre la culpa?', reverso: 'Es inútil: paraliza sin cambiar nada' },
+                { frente: '¿Cuál es el costo de postergación?', reverso: '-50% en resultados' },
+                { frente: '¿La fórmula ganadora?', reverso: 'Acción consistente (Hardy) + Mentalidad de poder (Dyer)' }
+            ];
+
+            let html = '';
+            tarjetas.forEach((t, idx) => {
+                html += `<div style="margin-bottom: 20px;">
+                    <div onclick="this.classList.toggle('flipped')" style="cursor: pointer; background: linear-gradient(135deg, #0F2E5C, #1A56A6); color: white; padding: 40px; border-radius: 12px; text-align: center; font-size: 1.2em; font-weight: bold; min-height: 150px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; transform-style: preserve-3d;" class="flashcard">
+                        <span class="front">${t.frente}</span>
+                        <span class="back" style="display: none; color: var(--orange);">${t.reverso}</span>
+                    </div>
+                </div>`;
+            });
+
+            document.getElementById('flashcards-container').innerHTML = html;
+
+            // Agregar lógica de volteo
+            document.querySelectorAll('.flashcard').forEach(card => {
+                card.addEventListener('click', function() {
+                    const front = this.querySelector('.front');
+                    const back = this.querySelector('.back');
+                    front.style.display = front.style.display === 'none' ? 'block' : 'none';
+                    back.style.display = back.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+        }
+
+        // ===== INICIALIZAR AL CARGAR =====
+        window.addEventListener('load', () => {
+            generarExamen();
+            generarFlashcards();
+            calcularCompuesto();
+        });
+    </script>
+</body>
+</html>

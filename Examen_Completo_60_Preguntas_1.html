@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Completo: 60 Preguntas - Psicología de Ventas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0F2E5C;
+            --orange: #EF7510;
+            --cream: #FFF7EC;
+            --light-blue: #D9E8F5;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--navy) 0%, #1A56A6 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            color: var(--navy);
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--navy), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        .tab-btn.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: white;
+        }
+
+        .exam-section {
+            display: none;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .exam-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 5px solid var(--orange);
+        }
+
+        .pregunta {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--navy);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .pregunta h4 {
+            color: var(--navy);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .opciones {
+            margin-left: 20px;
+        }
+
+        .opcion {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .opcion:hover {
+            background: #f5f5f5;
+        }
+
+        .opcion input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .opcion label {
+            cursor: pointer;
+            flex: 1;
+            margin: 0;
+        }
+
+        .btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #C66410;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(239, 117, 16, 0.4);
+        }
+
+        .resultado {
+            background: linear-gradient(135deg, var(--navy), #1A56A6);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+            margin-top: 20px;
+        }
+
+        .resultado h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: var(--orange);
+        }
+
+        .resultado p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--orange);
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--orange);
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .tabs { flex-direction: column; }
+            .tab-btn { width: 100%; }
+            .stats { grid-template-columns: 1fr; }
+        }
+
+        .libro-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hardy-badge {
+            background: #D9E8F5;
+            color: var(--navy);
+        }
+
+        .dyer-badge {
+            background: #FFE8D9;
+            color: var(--orange);
+        }
+
+        .instrucciones {
+            background: linear-gradient(135deg, #fff9f0, #fffde7);
+            border-left: 5px solid var(--orange);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .instrucciones h3 {
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 EXAMEN COMPLETO 60 PREGUNTAS</h1>
+            <p>El Efecto Compuesto (30Q) + Tus Zonas Erróneas (30Q)</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="cambiarTab('hardy', event)">📈 El Efecto Compuesto (30Q)</button>
+            <button class="tab-btn" onclick="cambiarTab('dyer', event)">🧠 Tus Zonas Erróneas (30Q)</button>
+        </div>
+
+        <!-- EXAMEN HARDY -->
+        <div id="hardy" class="exam-section active">
+            <div class="instrucciones">
+                <h3>📖 El Efecto Compuesto - Darren Hardy</h3>
+                <p><strong>Tema:</strong> Cómo pequeños cambios consistentes crean resultados extraordinarios en negocios y vida personal.</p>
+                <p><strong>Duración del examen:</strong> 30-40 minutos | <strong>Preguntas:</strong> 30 | <strong>Aprobación:</strong> 70% (21 preguntas correctas)</p>
+            </div>
+
+            <div id="hardy-preguntas"></div>
+
+            <div class="card">
+                <button class="btn" onclick="calificarHardy()">📊 CALIFICAR EXAMEN - HARDY</button>
+            </div>
+
+            <div id="hardy-resultado" class="resultado">
+                <h3 id="hardy-titulo"></h3>
+                <p id="hardy-mensaje"></p>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="hardy-correctas">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="hardy-incorrectas">0</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="hardy-porcentaje">0%</div>
+                        <div class="stat-label">Porcentaje</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="hardy-progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXAMEN DYER -->
+        <div id="dyer" class="exam-section">
+            <div class="instrucciones">
+                <h3>🧠 Tus Zonas Erróneas - Wayne Dyer</h3>
+                <p><strong>Tema:</strong> Identifica y supera creencias limitantes que sabotean tu éxito en ventas y vida personal.</p>
+                <p><strong>Duración del examen:</strong> 30-40 minutos | <strong>Preguntas:</strong> 30 | <strong>Aprobación:</strong> 70% (21 preguntas correctas)</p>
+            </div>
+
+            <div id="dyer-preguntas"></div>
+
+            <div class="card">
+                <button class="btn" onclick="calificarDyer()">📊 CALIFICAR EXAMEN - DYER</button>
+            </div>
+
+            <div id="dyer-resultado" class="resultado">
+                <h3 id="dyer-titulo"></h3>
+                <p id="dyer-mensaje"></p>
+                <div class="stats">
+                    <div class="stat-box">
+                        <div class="stat-number" id="dyer-correctas">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="dyer-incorrectas">0</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number" id="dyer-porcentaje">0%</div>
+                        <div class="stat-label">Porcentaje</div>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dyer-progress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BASE DE DATOS DE PREGUNTAS - EL EFECTO COMPUESTO (30 PREGUNTAS)
+        const preguntasHardy = [
+            {
+                q: "¿Cuál es la fórmula fundamental del Efecto Compuesto según Darren Hardy?",
+                opciones: [
+                    "Cambios grandes una sola vez",
+                    "1% mejor cada día = 37.78x mejor en un año",
+                    "Trabajar 100 horas a la semana",
+                    "Depender de la suerte"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuántos pilares del éxito menciona Hardy en su libro?",
+                opciones: ["3 pilares", "5 pilares", "6 pilares", "10 pilares"],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál es el concepto más importante según Hardy para cambiar resultados?",
+                opciones: [
+                    "Cambiar las circunstancias externas",
+                    "Cambiar tu identidad primero",
+                    "Ganar más dinero",
+                    "Trabajar más horas"
+                ],
+                correcta: 1
+            },
+            {
+                q: "En el contexto de ventas, ¿cuántos prospectos diarios recomienda Hardy como no negociable?",
+                opciones: ["1 prospecto", "2 prospectos", "3 prospectos", "5 prospectos"],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál es la curva del cambio en el Efecto Compuesto?",
+                opciones: [
+                    "Sube inmediatamente desde el día 1",
+                    "Plana en mes 1-2, luego sube mes 3-6, exponencial mes 6+",
+                    "Baja constantemente",
+                    "Es impredecible"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuántos libros al año podría leer un vendedor con 15 minutos diarios?",
+                opciones: ["5 libros", "15 libros", "30 libros", "50 libros"],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál es el verdadero costo de no aplicar el Efecto Compuesto en ventas?",
+                opciones: [
+                    "Unos pocos pesos mensuales",
+                    "Miles de pesos anuales",
+                    "Cientos de miles/millones anuales",
+                    "No tiene costo"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál de estos es un pilar del éxito según Hardy?",
+                opciones: [
+                    "Suerte constante",
+                    "Influencia: tu impacto en otros",
+                    "Trabajar sin descanso",
+                    "Evitar responsabilidades"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué significa la disciplina en el Efecto Compuesto?",
+                opciones: [
+                    "Ser muy duro contigo mismo",
+                    "Hábitos diarios consistentes sin importar motivación",
+                    "Trabajar solo cuando te sientas motivado",
+                    "Cambiar de estrategia constantemente"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo está relacionada la lectura con el Efecto Compuesto según Hardy?",
+                opciones: [
+                    "No está relacionada",
+                    "Es una distracción del trabajo",
+                    "Genera compuesto de conocimiento = 10x expertise",
+                    "Solo es útil antes de empezar a vender"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál es la mentalidad necesaria para el Efecto Compuesto?",
+                opciones: [
+                    "¿Cómo gano más dinero?",
+                    "¿A quién sirvo mejor?",
+                    "¿Cómo evito trabajo?",
+                    "¿Cuándo puedo descansar?"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué es la 'oportunidad' según Hardy?",
+                opciones: [
+                    "Esperar a que aparezca",
+                    "Preparación + Visibilidad + Acción",
+                    "Solo para gente privilegiada",
+                    "No existe"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el resultado de 3 prospectos diarios × 90 días × 20% conversión?",
+                opciones: [
+                    "10 nuevas pólizas",
+                    "18 nuevas pólizas",
+                    "36+ nuevas pólizas",
+                    "50 nuevas pólizas"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Quién es responsable de tu éxito en el Efecto Compuesto?",
+                opciones: [
+                    "Tu gerente",
+                    "Tu empresa",
+                    "Tú mismo (100% responsabilidad)",
+                    "La economía"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Qué pasa en mes 2 del Efecto Compuesto (la mayoría abandona)?",
+                opciones: [
+                    "Ves resultados espectaculares",
+                    "La curva sigue plana pero empieza a subir",
+                    "Todo colapsa",
+                    "Duplicas tus ingresos"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el verdadero significado de 'consistencia' para Hardy?",
+                opciones: [
+                    "Hacer lo mismo todos los días sin cambios",
+                    "Pequeñas acciones sostenidas sin excepción",
+                    "Solo trabajar cuando hay resultados",
+                    "Cambiar estrategia cada semana"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo afecta tu identidad a los resultados del Efecto Compuesto?",
+                opciones: [
+                    "No afecta nada",
+                    "Tu identidad determina tus hábitos = tu éxito",
+                    "Solo afecta emocionalmente",
+                    "Es secundaria"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el potencial de prima si aplicas Hardy + Dyer en 90 días?",
+                opciones: [
+                    "+5% en prima",
+                    "+15% en prima",
+                    "+30% en prima",
+                    "+50% en prima"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Qué es el 'tracking' en el contexto del Efecto Compuesto?",
+                opciones: [
+                    "Perseguir a los clientes",
+                    "Registrar métricas diarias (prospectos, cierres, prima)",
+                    "Espiar a la competencia",
+                    "No es importante"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuánto tiempo tarda en ser visible el Efecto Compuesto en ventas?",
+                opciones: [
+                    "1-2 semanas",
+                    "1 mes",
+                    "3-6 meses de consistencia",
+                    "1-2 años"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál de estos NO es un pilar del éxito según Hardy?",
+                opciones: [
+                    "Producción",
+                    "Influencia",
+                    "Suerte",
+                    "Disciplina"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Qué sucede con la prima si un agente tiene 0.5 prospectos/día vs 3 prospectos/día?",
+                opciones: [
+                    "La diferencia es mínima",
+                    "3-4x más dinero con 3 prospectos",
+                    "6x más dinero con 3 prospectos",
+                    "No hay diferencia"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cómo se relaciona la libertad financiera con el Efecto Compuesto?",
+                opciones: [
+                    "No están relacionadas",
+                    "Pequeños cambios = resultados compuestos = libertad",
+                    "Solo viene con suerte",
+                    "Es imposible"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el primer paso para aplicar el Efecto Compuesto en tu carrera?",
+                opciones: [
+                    "Cambiar de empresa",
+                    "Cambiar tu identidad: de 'promedio' a 'experto'",
+                    "Trabajar más horas",
+                    "Esperar a condiciones perfectas"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué significa 'Producción' como pilar según Hardy?",
+                opciones: [
+                    "Fabricar productos",
+                    "Resultados concretos medibles (prima pagada)",
+                    "Producir contenido",
+                    "Ser productivo todo el tiempo"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el mayor error que cometen los agentes con el Efecto Compuesto?",
+                opciones: [
+                    "Aplican estrategias nuevas cada mes",
+                    "Abandonan en mes 2 porque 'no ven resultados'",
+                    "Trabajan demasiadas horas",
+                    "Leen demasiados libros"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo calcula Hardy el impacto de pequeños cambios?",
+                opciones: [
+                    "Suma simple: 1% × 365 = 365%",
+                    "Multiplicación compuesta: 1.01^365 = 37.78x",
+                    "No se puede calcular",
+                    "Solo es teórico"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué necesita primero: motivación o disciplina en el Efecto Compuesto?",
+                opciones: [
+                    "Motivación es suficiente",
+                    "Disciplina (crea hábitos que generan motivación)",
+                    "Son iguales",
+                    "Ninguna de las dos"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es la mentalidad de escasez vs abundancia según Hardy?",
+                opciones: [
+                    "Son lo mismo",
+                    "Escasez: Hay suficiente para todos",
+                    "Abundancia: Hay oportunidades ilimitadas para quien trabaja",
+                    "No es importante"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿En cuánto tiempo se multiplica tu expertise con lectura consistente?",
+                opciones: [
+                    "3 meses",
+                    "6 meses",
+                    "1 año = 10x más expertise",
+                    "Nunca"
+                ],
+                correcta: 2
+            }
+        ];
+
+        // BASE DE DATOS DE PREGUNTAS - TUS ZONAS ERRÓNEAS (30 PREGUNTAS)
+        const preguntasDyer = [
+            {
+                q: "¿Qué es una 'zona errónea' según Wayne Dyer?",
+                opciones: [
+                    "Un área geográfica",
+                    "Creencias limitantes que sabotean tu éxito",
+                    "Un error en el cálculo",
+                    "Una estrategia de ventas"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es la zona errónea más destructiva en ventas?",
+                opciones: [
+                    "Miedo a los números",
+                    "Buscar aprobación externa",
+                    "No tener CRM",
+                    "Falta de experiencia"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué dice Dyer sobre la culpa?",
+                opciones: [
+                    "Es útil para mejorar",
+                    "Es la emoción más inútil (paraliza sin cambiar nada)",
+                    "Es necesaria",
+                    "No existe"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué significa 'Zona de Poder' en Dyer?",
+                opciones: [
+                    "Tu oficina o cubículo",
+                    "Actúas desde quién quieres SER, no desde miedo",
+                    "Tu zona de confort",
+                    "Donde ganas más dinero"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo interpreta un vendedor en Zona de Poder un 'No' del cliente?",
+                opciones: [
+                    "Rechazo personal",
+                    "Información: cliente necesita más educación",
+                    "Fracaso total",
+                    "Razón para abandonar"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el costo de la postergación en vendedores?",
+                opciones: [
+                    "-10% en resultados",
+                    "-25% en resultados",
+                    "-50% en resultados",
+                    "-75% en resultados"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cuál es la solución de Dyer para la postergación?",
+                opciones: [
+                    "Esperar el momento perfecto",
+                    "Agenda HOY. Confirma HOY. Actúa HOY.",
+                    "Delegar a otros",
+                    "No hay solución"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué zona errónea es el perfeccionismo?",
+                opciones: [
+                    "Es positivo siempre",
+                    "Esperar 100% preparación = nunca actuar",
+                    "No afecta resultados",
+                    "Es lo mismo que excelencia"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué propone Dyer sobre comparación con otros?",
+                opciones: [
+                    "Compite con todos",
+                    "Solo compite contigo mismo ayer",
+                    "La comparación es útil",
+                    "No hay competencia"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo se relaciona la identidad con las zonas erróneas?",
+                opciones: [
+                    "No están relacionadas",
+                    "'Creo que soy tímido' → Comportamiento tímido",
+                    "La identidad no importa",
+                    "La identidad solo afecta psicológicamente"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el impacto de buscar aprobación externa?",
+                opciones: [
+                    "-10% en cierres",
+                    "-20% en cierres",
+                    "-30% en cierres",
+                    "Sin impacto"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Qué dice Dyer sobre tomar responsabilidad por los resultados?",
+                opciones: [
+                    "Culpar al mercado",
+                    "Culpar a la empresa",
+                    "Ser 100% responsable de tus resultados",
+                    "Es responsabilidad de otros"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cuántas conversiones logra alguien en Zona Errónea vs Zona de Poder?",
+                opciones: [
+                    "La misma cantidad",
+                    "Zona Errónea: 5% | Zona de Poder: 20% = 4x más",
+                    "Zona Errónea: 10% | Zona de Poder: 15%",
+                    "No hay diferencia"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué es una 'profecía autocumplida' en Dyer?",
+                opciones: [
+                    "Una predicción del futuro",
+                    "'Creo que fracasaré' → Actúo como si fuera a fallar → Fallo",
+                    "Una coincidencia",
+                    "No existe"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es la base de la Zona de Poder?",
+                opciones: [
+                    "Tener dinero",
+                    "Cambiar tu mentalidad y creencias sobre ti",
+                    "Tener suerte",
+                    "Trabajar más horas"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo define Dyer el 'miedo al rechazo' en ventas?",
+                opciones: [
+                    "Cliente dice 'no' = Rechaza mi producto",
+                    "Cliente dice 'no' = Rechaza MI PERSONA",
+                    "No es miedo, es realidad",
+                    "Es imaginario"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el primer paso para salir de una zona errónea?",
+                opciones: [
+                    "Ignorarla",
+                    "Identificarla y reconocerla",
+                    "Esperar a que desaparezca",
+                    "Culpar a otros"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué impacto tiene la autoestima en las zonas erróneas?",
+                opciones: [
+                    "No tiene impacto",
+                    "Autoestima baja = Más zonas erróneas activas",
+                    "Autoestima alta = Menos zonas erróneas",
+                    "Es lo opuesto"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Cómo maneja Dyer la aceptación del cambio?",
+                opciones: [
+                    "El cambio es malo",
+                    "El cambio es el único punto constante",
+                    "No hay cambio real",
+                    "Cambio es solo teórico"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el costo de vivir en Zona de Poder vs Zona Errónea anualmente?",
+                opciones: [
+                    "Diferencia de $50,000",
+                    "Diferencia de $200,000",
+                    "$450,000/año o más",
+                    "No hay diferencia"
+                ],
+                correcta: 2
+            },
+            {
+                q: "¿Qué significa 'empoderamiento' según Dyer?",
+                opciones: [
+                    "Tener poder sobre otros",
+                    "Tener poder sobre tus decisiones y mentalidad",
+                    "Recibir poder de otros",
+                    "No existe"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo se relaciona el perfeccionismo con la acción?",
+                opciones: [
+                    "Perfeccionismo = Más acción",
+                    "Perfeccionismo = Menos acción (paraliza)",
+                    "Son independientes",
+                    "Perfeccionismo es bueno"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es la frase clave para escapar de la Zona Errónea de aprobación?",
+                opciones: [
+                    "'¿Qué van a pensar?'",
+                    "'¿A quién sirvo mejor?'",
+                    "'¿Tengo permiso?'",
+                    "'Necesito aprobación'"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo visualiza Dyer el 'diálogo interno'?",
+                opciones: [
+                    "No es importante",
+                    "Determina tu realidad y resultados",
+                    "Solo afecta emocionalmente",
+                    "Es controlado por otros"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué pasa cuando un vendedor actúa desde Zona de Poder en una llamada?",
+                opciones: [
+                    "El cliente se intimida",
+                    "Siente confianza y autoridad",
+                    "Es agresivo",
+                    "Pierde la venta"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el antídoto para la comparación destructiva?",
+                opciones: [
+                    "Compararse más",
+                    "Enfocarse en progreso personal (vs ayer)",
+                    "Ignorar a todos",
+                    "Rendirse"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cómo define Dyer la 'libertad emocional'?",
+                opciones: [
+                    "No tener emociones",
+                    "No depender de aprobación externa para tu valor",
+                    "Estar siempre feliz",
+                    "Evitar problemas"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Qué papel juega la aceptación en las zonas erróneas?",
+                opciones: [
+                    "Ignorar el problema",
+                    "Reconocer y aceptar antes de cambiar",
+                    "Justificar comportamientos",
+                    "No es importante"
+                ],
+                correcta: 1
+            },
+            {
+                q: "¿Cuál es el resultado de vivir permanentemente en Zona Errónea?",
+                opciones: [
+                    "Éxito constante",
+                    "Estancamiento, frustración, baja prima",
+                    "Cambios positivos",
+                    "Es igual al éxito"
+                ],
+                correcta: 1
+            }
+        ];
+
+        // FUNCIONES
+        function cambiarTab(tab, event) {
+            event.preventDefault();
+            
+            document.querySelectorAll('.exam-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function generarPreguntas(preguntas, contenedorId) {
+            let html = '';
+            preguntas.forEach((p, idx) => {
+                html += `
+                    <div class="pregunta">
+                        <h4>Pregunta ${idx + 1}/30: ${p.q}</h4>
+                        <div class="opciones">
+                `;
+                
+                p.opciones.forEach((op, i) => {
+                    const radioId = `${contenedorId}_q${idx}_op${i}`;
+                    html += `
+                        <div class="opcion">
+                            <input type="radio" id="${radioId}" name="${contenedorId}_q${idx}" value="${i}">
+                            <label for="${radioId}">${op}</label>
+                        </div>
+                    `;
+                });
+                
+                html += '</div></div>';
+            });
+            
+            document.getElementById(contenedorId + '-preguntas').innerHTML = html;
+        }
+
+        function calificarExamen(preguntas, contenedorId) {
+            let correctas = 0;
+            preguntas.forEach((p, idx) => {
+                const respuesta = document.querySelector(`input[name="${contenedorId}_q${idx}"]:checked`);
+                if (respuesta && parseInt(respuesta.value) === p.correcta) {
+                    correctas++;
+                }
+            });
+            
+            const porcentaje = Math.round((correctas / preguntas.length) * 100);
+            const paso = porcentaje >= 70;
+            
+            const titulo = document.getElementById(contenedorId + '-titulo');
+            const mensaje = document.getElementById(contenedorId + '-mensaje');
+            const correctasEl = document.getElementById(contenedorId + '-correctas');
+            const incorrectasEl = document.getElementById(contenedorId + '-incorrectas');
+            const porcentajeEl = document.getElementById(contenedorId + '-porcentaje');
+            const progressEl = document.getElementById(contenedorId + '-progress');
+            const resultadoEl = document.getElementById(contenedorId + '-resultado');
+            
+            titulo.textContent = paso ? '✅ ¡APROBASTE!' : '❌ NO APROBASTE';
+            titulo.style.color = paso ? '#27ae60' : '#d32f2f';
+            
+            mensaje.textContent = paso ? 
+                '¡Excelente! Demostraste dominio completo de los conceptos.' : 
+                'Vuelve a estudiar y reintenta. Necesitas 70% para aprobar.';
+            
+            correctasEl.textContent = correctas;
+            incorrectasEl.textContent = preguntas.length - correctas;
+            porcentajeEl.textContent = porcentaje + '%';
+            progressEl.style.width = porcentaje + '%';
+            
+            resultadoEl.style.display = 'block';
+            window.scrollTo({top: resultadoEl.offsetTop - 100, behavior: 'smooth'});
+        }
+
+        function calificarHardy() {
+            calificarExamen(preguntasHardy, 'hardy');
+        }
+
+        function calificarDyer() {
+            calificarExamen(preguntasDyer, 'dyer');
+        }
+
+        // GENERAR AL CARGAR
+        window.addEventListener('load', () => {
+            generarPreguntas(preguntasHardy, 'hardy');
+            generarPreguntas(preguntasDyer, 'dyer');
+        });
+    </script>
+</body>
+</html>
